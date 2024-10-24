@@ -29,41 +29,24 @@ using namespace std;
 // Code360
 int findMajorityElement(int arr[], int n) {
 	// Write your code here.
-    set<int> unique;
-    for(int i =0; i<n; i++){
-        unique.insert(arr[i]);
-    }
-    int majority=-2;
-    unordered_map<int,int> occ;
-    for(auto it:unique){
-        int count = 0;
-        for(int i = 0; i<n; i++){
-            if(it==arr[i]){
-                count+=1;
-            }
-        }
-        if(count>n/2){
-            occ.insert(make_pair(it,count));
-        }
-    }
-    int largest = 0;
-    for(auto it:occ){
-        if(it.second>largest){
-            largest = it.second;
-            majority = it.first;
+    unordered_map<int, int> occ;
+    int majority = -1;
+    
+    for (int i = 0; i < n; i++) {
+        occ[arr[i]]++;
+        
+        if (occ[arr[i]] > n / 2) {
+            majority = arr[i];
+            break;
         }
     }
 
-    if(majority==-2){
-        return -1;
-    }else{
-        return majority;
-    }
+    return majority;
 }
 
 int main(){
-    int arr[8] = {1,2,5,5,5,4};
-    int res = findMajorityElement(arr, 8);
+    int arr[8] = {1,2,5,5,5,5};
+    int res = findMajorityElement(arr, 6);
     cout<<res;
     return 0;
 }
