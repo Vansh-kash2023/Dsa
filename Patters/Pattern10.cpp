@@ -13,6 +13,6 @@ void nStarTriangle(int n) {
 }
 
 int main(){
-    nStarTriangle(25);
+    nStarTriangle(3);
     return 0;
 }
